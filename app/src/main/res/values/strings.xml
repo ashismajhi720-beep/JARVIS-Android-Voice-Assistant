@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JARVIS</string>
+    <string name="notification_title">JARVIS Microphone Service</string>
+    <string name="notification_text">Listening for wake word detection</string>
+    <string name="mic_permission_required">Microphone permission is required for wake word detection</string>
+    <string name="service_started">Microphone service started</string>
+    <string name="service_stopped">Microphone service stopped</string>
+</resources>
