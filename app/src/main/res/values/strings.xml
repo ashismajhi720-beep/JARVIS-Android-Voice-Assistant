@@ -6,4 +6,7 @@
     <string name="mic_permission_required">Microphone permission is required for wake word detection</string>
     <string name="service_started">Microphone service started</string>
     <string name="service_stopped">Microphone service stopped</string>
+    <string name="status_ready">Ready to listen</string>
+    <string name="status_listening">Foreground service running</string>
+    <string name="status_stopped">Service stopped</string>
 </resources>
