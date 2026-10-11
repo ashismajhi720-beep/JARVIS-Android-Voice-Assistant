@@ -1,0 +1,48 @@
+name: Build JARVIS Debug APK
+
+on:
+workflow_dispatch:
+push:
+branches:
+- main
+- master
+
+permissions:
+contents: read
+
+jobs:
+build:
+runs-on: ubuntu-latest
+
+steps:
+  - name: Checkout repository
+    uses: actions/checkout@v4
+
+  - name: Set up Java
+    uses: actions/setup-java@v4
+    with:
+      distribution: temurin
+      java-version: '17'
+
+  - name: Check Gradle Wrapper files
+    run: |
+      ls -la
+      ls -la gradle/wrapper || true
+
+  - name: Build Debug APK
+    run: |
+      if [ -f ./gradlew ] && [ -f ./gradle/wrapper/gradle-wrapper.jar ] && [ -f ./gradle/wrapper/gradle-wrapper.properties ]; then
+        chmod +x ./gradlew
+        ./gradlew assembleDebug --stacktrace
+      else
+        echo "ERROR: Gradle Wrapper files are missing."
+        exit 1
+      fi
+
+  - name: Upload Debug APK
+    if: success()
+    uses: actions/upload-artifact@v4
+    with:
+      name: JARVIS-debug-APK
+      path: app/build/outputs/apk/debug/*.apk
+      if-no-files-found: error
